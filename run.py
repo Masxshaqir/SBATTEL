@@ -79,3 +79,31 @@ def get_computer_input(grid_size):
     row = random.randint(0, grid_size - 1)  
     col = random.randint(0, grid_size - 1)  
     return row, col  
+
+
+def get_user_input(grid_size):
+    """Prompts the user for row and column coordinates within the grid size."""
+    while True:  
+        try:
+            row = int(input("Enter number horizontally between (0-{}):\n "
+                            .format(grid_size - 1)))  
+            if 0 <= row < grid_size:  
+                break  
+            else:
+                print("Invalid input, please enter coordinates within"
+                      " the grid.\n")  
+        except ValueError:
+            print("Invalid input, please enter a number.\n")  
+
+    while True:  
+        try:
+            col = int(input("Enter number vertically between (0-{}):\n "
+                            .format(grid_size - 1)))  
+            if 0 <= col < grid_size:  
+                break  
+            else:
+                print("Invalid input, please enter coordinates within"
+                      " the grid.\n")  
+        except ValueError:
+            print("Invalid input, please enter a number.\n")  
+    return row, col  
