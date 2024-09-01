@@ -1,6 +1,3 @@
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
 import random
 
 class BaseBoard:
@@ -14,11 +11,13 @@ class BaseBoard:
         self.num_ships = num_ships  
         self.grid = self.create_grid()  
         self.place_ships() 
-def create_grid(self):
+
+    def create_grid(self):  
         """Creates and returns an empty grid of the specified size."""
         return [[' ' for _ in range(self.grid_size)]  
                 for _ in range(self.grid_size)]
-def place_ships(self):
+
+    def place_ships(self):  
         """Randomly places the specified number of ships on the grid."""
         for _ in range(self.num_ships):  
             row = random.randint(0, self.grid_size - 1)  
@@ -28,16 +27,14 @@ def place_ships(self):
                 col = random.randint(0, self.grid_size - 1)  
             self.grid[row][col] = 'S'  
 
-    def print_board(self):
+    def print_board(self):  
         """Prints the current state of the grid."""
-        print("   " + " ".join([str(i) for i in range(len(self.grid))]))  
-        print("  " + "--" * len(self.grid))  
-        row_number = 0
-        for row in self.grid:  
-            print("%d |%s|" % (row_number, "|".join(row)))  
-            row_number += 1
+        header = "    " + " ".join([f"{i:2}" for i in range(len(self.grid))])  
+        print(header)
+        print("   " + "---" * len(self.grid))  
+        for row_number, row in enumerate(self.grid):  
+            print(f"{row_number:2} | " + " | ".join(row) + " |")
         print("\n")  
-
         
 class PlayerBoard(BaseBoard):
     """Class for the player's board, derived from the BaseBoard class."""
@@ -109,34 +106,6 @@ def get_user_input(grid_size):
     return row, col  
 
 
-def get_user_input(grid_size):
-    """Prompts the user for row and column coordinates within the grid size."""
-    while True:  
-        try:
-            row = int(input("Enter number horizontally between (0-{}):\n "
-                            .format(grid_size - 1)))  
-            if 0 <= row < grid_size:  
-                break  
-            else:
-                print("Invalid input, please enter coordinates within"
-                      " the grid.\n")  
-        except ValueError:
-            print("Invalid input, please enter a number.\n")  
-
-    while True:  
-        try:
-            col = int(input("Enter number vertically between (0-{}):\n "
-                            .format(grid_size - 1)))  
-            if 0 <= col < grid_size:  
-                break  
-            else:
-                print("Invalid input, please enter coordinates within"
-                      " the grid.\n")  
-        except ValueError:
-            print("Invalid input, please enter a number.\n") 
-    return row, col  
-
-    
 def main():
     """
 The main function contains two primary loops:
@@ -176,7 +145,7 @@ indicating whether the user or the computer has won the game."""
 
     player_name = input("Enter your name: \n")  
 
- while True:  
+    while True:  
         try:
             grid_size = int(input("Enter grid size (3 TO 15): \n"))  
             if 3 <= grid_size <= 15:  
@@ -200,7 +169,8 @@ indicating whether the user or the computer has won the game."""
 
         except ValueError:
             print("Invalid input, please enter a number.\n") 
-  player_board = PlayerBoard(grid_size, num_ships, player_name)  
+
+    player_board = PlayerBoard(grid_size, num_ships, player_name)  
     computer_board = ComputerBoard(grid_size, num_ships)  
 
     user_score = 0  
@@ -213,18 +183,15 @@ indicating whether the user or the computer has won the game."""
         player_board.display()  
         computer_board.display()  
 
-        
-        while True: 
+        while True:  
             row, col = get_user_input(grid_size)  
 
             if (computer_board.grid[row][col] == ' ' or
                computer_board.grid[row][col] == 'S'):  
-
                 break  
             else:
                 print("You have already guessed this location try again.\n")  
 
-                
         if computer_board.grid[row][col] == 'S':  
             print(" YOU GOT Hit!\n")  
             computer_board.grid[row][col] = 'X'  
@@ -234,7 +201,6 @@ indicating whether the user or the computer has won the game."""
             print("\nYOU Miss!\n")  
             computer_board.grid[row][col] = '0'  
 
-        
         row, col = get_computer_input(grid_size)  
         while (player_board.grid[row][col] == 'O' or
                player_board.grid[row][col] == 'X' or
