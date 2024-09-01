@@ -223,3 +223,42 @@ indicating whether the user or the computer has won the game."""
                 break  
             else:
                 print("You have already guessed this location try again.\n")  
+
+                
+        if computer_board.grid[row][col] == 'S':  
+            print(" YOU GOT Hit!\n")  
+            computer_board.grid[row][col] = 'X'  
+            computer_ships_remaining -= 1  
+            user_score += 1  
+        elif computer_board.grid[row][col] == ' ':  
+            print("\nYOU Miss!\n")  
+            computer_board.grid[row][col] = '0'  
+
+        
+        row, col = get_computer_input(grid_size)  
+        while (player_board.grid[row][col] == 'O' or
+               player_board.grid[row][col] == 'X' or
+               player_board.grid[row][col] == '#'):  
+            row, col = get_computer_input(grid_size)  
+
+        if player_board.grid[row][col] == 'S':  
+            print("Computer got a hit!\n")  
+            player_board.grid[row][col] = '#'  
+            user_ships_remaining -= 1  
+            computer_score += 1  
+        else:
+            print("Computer missed!\n")  
+
+        print("User score: {}\nComputer score: {}\n"
+              .format(user_score, computer_score))  
+
+    if user_ships_remaining == 0:  
+        print(f"The computer has sunk all of your ships!"
+              f" Better luck next time!\n")  
+    else:
+        print(f"Congratulations, {player_name}!"
+              f" You have sunk all the computer's ships!\n")  
+
+
+if __name__ == "__main__":
+    main()  
