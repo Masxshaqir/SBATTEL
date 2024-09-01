@@ -135,3 +135,44 @@ def get_user_input(grid_size):
         except ValueError:
             print("Invalid input, please enter a number.\n") 
     return row, col  
+
+    
+def main():
+    """
+The main function contains two primary loops:
+
+The game loop:
+This while loop continues running until either the user or the computer
+has no remaining ships. Inside this loop, the player and computer boards
+are displayed, and turns for the user and computer are handled.
+
+a. User's turn loop:
+This loop prompts the user to input their guess (row and column) for
+a ship on the computer's board. It keeps asking for input until
+the user provides a valid guess (a location that hasn't been guessed before).
+Afterward, the loop checks if the guess is a hit or a miss, updates
+the computer's board, and adjusts the scores and remaining ships accordingly.
+
+b. Computer's turn loop:
+This loop generates random guesses for the computer's turn.
+It keeps generating new guesses until a valid guess
+(a location that hasn't been guessed before) is found.
+The loop then checks if the guess is a hit or a miss on the user's board,
+updates the user's board,
+and adjusts the scores and remaining ships accordingly.
+
+After the game loop ends, the main function prints the game results,
+indicating whether the user or the computer has won the game."""
+
+    print("--------------------------------")
+    print("Welcome To The Battleships Game!")  
+    print("--------------------------------\n")
+    print("Symbols explanation:\n")
+    print(" S - Ship")  
+    print(" X - Hit")
+    print(" 0 - User Miss on Computer's Grid")
+    print(" # - Computer Hit")
+    print("\n")
+
+    player_name = input("Enter your name: \n")  
+
