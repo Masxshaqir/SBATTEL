@@ -71,3 +71,11 @@ class ComputerBoard(BaseBoard):
             print("%d |%s|" % (row_number, "|".join(row)))  
             row_number += 1
         print("\n")  
+
+        
+def get_computer_input(grid_size):
+    """Generates random row and column coordinates within the grid size,
+    for the computer's move."""
+    row = random.randint(0, grid_size - 1)  
+    col = random.randint(0, grid_size - 1)  
+    return row, col  
