@@ -37,3 +37,37 @@ def place_ships(self):
             print("%d |%s|" % (row_number, "|".join(row)))  
             row_number += 1
         print("\n")  
+
+        
+class PlayerBoard(BaseBoard):
+    """Class for the player's board, derived from the BaseBoard class."""
+
+    def __init__(self, grid_size, num_ships, player_name):
+        """Initializes the player's name and calls the parent constructor."""
+        super().__init__(grid_size, num_ships)  
+        self.player_name = player_name  
+
+    def display(self):
+        """Displays the player's board."""
+        print("{}'s Board:".format(self.player_name))  
+        self.print_board()  
+
+class ComputerBoard(BaseBoard):
+    """Class for the computer's board, derived from the BaseBoard class."""
+
+    def display(self):
+        """Displays the computer's board with ships hidden."""
+        print("Computer's Board:")  
+        hidden_grid = [[' ' if cell == 'S' else cell for cell in row]  
+                       for row in self.grid]
+        self.print_hidden_board(hidden_grid)  
+
+    def print_hidden_board(self, hidden_grid):
+        """Prints the current state of the hidden grid."""
+        print("   " + " ".join([str(i) for i in range(len(hidden_grid))]))   
+        print("  " + "--" * len(hidden_grid))  
+        row_number = 0
+        for row in hidden_grid:  
+            print("%d |%s|" % (row_number, "|".join(row)))  
+            row_number += 1
+        print("\n")  
