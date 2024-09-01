@@ -176,3 +176,27 @@ indicating whether the user or the computer has won the game."""
 
     player_name = input("Enter your name: \n")  
 
+ while True:  
+        try:
+            grid_size = int(input("Enter grid size (3 TO 15): \n"))  
+            if 3 <= grid_size <= 15:  
+                break  
+            else:
+                print(f"Invalid input, please enter a grid size between"
+                      f" 3 and 15 (inclusive).\n") 
+        except ValueError:
+            print("Invalid input, please enter a number.\n")  
+
+    while True:  
+        try:
+            num_ships = int(input("Enter number of ships (1 TO {}): \n"
+                                  .format(grid_size)))  
+
+            if 0 < num_ships <= grid_size:  
+                break  
+            else:
+                print(f"Invalid input, please enter a number of ships"
+                      f" between 1 and {grid_size} (inclusive).\n")  
+
+        except ValueError:
+            print("Invalid input, please enter a number.\n") 
