@@ -200,3 +200,26 @@ indicating whether the user or the computer has won the game."""
 
         except ValueError:
             print("Invalid input, please enter a number.\n") 
+  player_board = PlayerBoard(grid_size, num_ships, player_name)  
+    computer_board = ComputerBoard(grid_size, num_ships)  
+
+    user_score = 0  
+    computer_score = 0 
+
+    user_ships_remaining = num_ships  
+    computer_ships_remaining = num_ships  
+
+    while user_ships_remaining > 0 and computer_ships_remaining > 0:  
+        player_board.display()  
+        computer_board.display()  
+
+        
+        while True: 
+            row, col = get_user_input(grid_size)  
+
+            if (computer_board.grid[row][col] == ' ' or
+               computer_board.grid[row][col] == 'S'):  
+
+                break  
+            else:
+                print("You have already guessed this location try again.\n")  
